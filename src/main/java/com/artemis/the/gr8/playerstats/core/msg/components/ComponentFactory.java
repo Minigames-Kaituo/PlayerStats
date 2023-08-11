@@ -185,7 +185,7 @@ public class ComponentFactory {
                 text("Share")
                         .color(FEEDBACK_MSG_ACCENT)
                         .clickEvent(ClickEvent.runCommand("/statshare " + shareCode))
-                        .hoverEvent(HoverEvent.showText(text("Click here to share this statistic in chat!")
+                        .hoverEvent(HoverEvent.showText(text("点击这里在聊天中分享这个统计数据！")
                                 .color(INFO_MSG_ACCENT_MEDIUM))));
     }
 

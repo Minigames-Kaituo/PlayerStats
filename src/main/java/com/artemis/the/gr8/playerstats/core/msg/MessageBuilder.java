@@ -100,7 +100,7 @@ public final class MessageBuilder implements StatTextFormatter {
     }
 
     public @NotNull TextComponent stillReloading() {
-        return composePluginMessage("The plugin is (re)loading, your request will be processed when it is done!");
+        return composePluginMessage("插件正在（重新）加载，完成后将处理请求！");
     }
 
     public @NotNull TextComponent excludeSuccess(String playerName) {
@@ -112,43 +112,42 @@ public final class MessageBuilder implements StatTextFormatter {
     }
 
     public @NotNull TextComponent excludeFailed() {
-        return composePluginMessage("This player is already hidden from /stat results!");
+        return composePluginMessage("该玩家已从 /stat 结果中隐藏了！");
     }
 
     public @NotNull TextComponent includeSuccess(String playerName) {
         return componentFactory.pluginPrefix()
                 .append(space())
-                .append(componentFactory.message().content("Removed ")
-                        .append(componentFactory.messageAccent().content(playerName))
-                        .append(text(" from the exclude-list!")));
+                .append(componentFactory.message().content("已从排除列表中删除")
+                        .append(componentFactory.messageAccent().content(playerName)));
     }
 
     public @NotNull TextComponent includeFailed() {
-        return composePluginMessage("This is not a player that has been excluded with the /statexclude command!");
+        return composePluginMessage("这不是被使用 /statexclude 命令排除的玩家！");
     }
 
     public @NotNull TextComponent waitAMinute() {
-        return composePluginMessage("Calculating statistics, this may take a minute...");
+        return composePluginMessage("正在计算统计数据，这可能需要一分钟...");
     }
 
     public @NotNull TextComponent waitAMoment() {
-        return composePluginMessage("Calculating statistics, this may take a few moments...");
+        return composePluginMessage("正在计算统计数据，这可能需要一些时间...");
     }
 
     public @NotNull TextComponent missingStatName() {
-        return composePluginMessage("Please provide a valid statistic name!");
+        return composePluginMessage("请提供有效的统计名称！");
     }
 
     public @NotNull TextComponent missingSubStatName(String statType) {
-        return composePluginMessage("Please add a valid " + statType + " to look up this statistic!");
+        return composePluginMessage("请添加有效的 " + statType + " 以查找此统计数据！");
     }
 
     public @NotNull TextComponent missingPlayerName() {
-        return composePluginMessage("Please specify a valid player-name!");
+        return composePluginMessage("请指定有效的玩家名称！");
     }
 
     public @NotNull TextComponent playerIsExcluded() {
-        return composePluginMessage("This player is excluded from /stat results!");
+        return composePluginMessage("该玩家被排除在 /stat 结果之外！");
     }
 
     public @NotNull TextComponent wrongSubStatType(String statType, String subStatName) {
@@ -157,39 +156,35 @@ public final class MessageBuilder implements StatTextFormatter {
                 .append(componentFactory.messageAccent().content("\"" + subStatName + "\""))
                 .append(space())
                 .append(componentFactory.message().content(
-                "is not a valid " + statType + "!"));
+                "不是有效的 " + statType + "！"));
     }
 
     public @NotNull TextComponent requestAlreadyRunning() {
-        return composePluginMessage("Please wait for your previous lookup to finish!");
+        return composePluginMessage("请先等待之前的查找请求完成！");
     }
 
     public @NotNull TextComponent stillOnShareCoolDown() {
         int waitTime = config.getStatShareWaitingTime();
-        String minutes = waitTime == 1 ? " minute" : " minutes";
+        String minutes = " 分钟";
 
         return componentFactory.pluginPrefix()
                 .append(space())
-                .append(componentFactory.message().content("You need to wait")
+                .append(componentFactory.message().content("请在共享之间等待")
                         .append(space())
                         .append(componentFactory.messageAccent()
-                                .content(waitTime + minutes))
-                        .append(space())
-                        .append(text("between sharing!")));
+                                .content(waitTime + minutes)));
     }
 
     public @NotNull TextComponent resultsAlreadyShared() {
-        return composePluginMessage("You already shared these results!");
+        return composePluginMessage("已经分享了这些结果！");
     }
 
     public @NotNull TextComponent statResultsTooOld() {
-        return composePluginMessage("It has been too long since you looked up " +
-                "this statistic, please repeat the original command!");
+        return composePluginMessage("自从查找此统计信息以来已经太久了，请重新发送原始命令！");
     }
 
     public @NotNull TextComponent unknownError() {
-        return composePluginMessage("Something went wrong with your request, " +
-                "please try again or see /statistic for a usage explanation!");
+        return composePluginMessage("请求出现问题，请重试或查看 /statistic 以获取用法说明");
     }
 
     private @NotNull TextComponent composePluginMessage(String content) {
@@ -221,7 +216,7 @@ public final class MessageBuilder implements StatTextFormatter {
                 .append(newline())
                 .append(getPluginPrefixAsTitle()
                 .append(newline())
-                .append(componentFactory.subTitle("All players that are currently excluded: ")));
+                .append(componentFactory.subTitle("目前被排除的玩家：")));
 
         excludedPlayerNames.forEach(playerName -> excludedList
                 .append(newline())
